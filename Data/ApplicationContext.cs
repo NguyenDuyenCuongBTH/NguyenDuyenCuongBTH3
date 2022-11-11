@@ -13,4 +13,8 @@ using NguyenDuyenCuongBTH3.Models;
         }
 
         public DbSet<NguyenDuyenCuongBTH3.Models.Employee> Employee { get; set; } = default!;
+
+        public DbSet<NguyenDuyenCuongBTH3.Models.Student>? Student { get; set; }
+
+        public DbSet<NguyenDuyenCuongBTH3.Models.Person>? Person { get; set; }
     }

@@ -10,88 +10,88 @@ using NguyenDuyenCuongBTH3.Models.Process;
 
 namespace NguyenDuyenCuongBTH3.Controllers
 {
-    public class EmployeeController : Controller
+    public class PersonController : Controller
     {
-         private readonly ApplicationContext _context;
-         private ExcelProcess _excelProcess = new ExcelProcess();
+        private readonly ApplicationContext _context;
+        private ExcelProcess _excelProcess = new ExcelProcess();
 
-        public EmployeeController(ApplicationContext context)
+        public PersonController(ApplicationContext context)
         {
             _context = context;
         }
 
-        // GET: Employee
+        // GET: Person
         public async Task<IActionResult> Index()
         {
-              return _context.Employee != null ? 
-                          View(await _context.Employee.ToListAsync()) :
-                          Problem("Entity set 'ApplicationContext.Employee'  is null.");
+              return _context.Person != null ? 
+                          View(await _context.Person.ToListAsync()) :
+                          Problem("Entity set 'ApplicationContext.Person'  is null.");
         }
 
-        // GET: Employee/Details/5
+        // GET: Person/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.Employee == null)
+            if (id == null || _context.Person == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employee
-                .FirstOrDefaultAsync(m => m.EmpId == id);
-            if (employee == null)
+            var person = await _context.Person
+                .FirstOrDefaultAsync(m => m.PersonID == id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(person);
         }
 
-        // GET: Employee/Create
+        // GET: Person/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Employee/Create
+        // POST: Person/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpId,EmpName,Address")] Employee employee)
+        public async Task<IActionResult> Create([Bind("PersonID,PersonName,PersonAddress")] Person person)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
+                _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(person);
         }
 
-        // GET: Employee/Edit/5
+        // GET: Person/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.Employee == null)
+            if (id == null || _context.Person == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employee.FindAsync(id);
-            if (employee == null)
+            var person = await _context.Person.FindAsync(id);
+            if (person == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            return View(person);
         }
 
-        // POST: Employee/Edit/5
+        // POST: Person/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("EmpId,EmpName,Address")] Employee employee)
+        public async Task<IActionResult> Edit(string id, [Bind("PersonID,PersonName,PersonAddress")] Person person)
         {
-            if (id != employee.EmpId)
+            if (id != person.PersonID)
             {
                 return NotFound();
             }
@@ -100,12 +100,12 @@ namespace NguyenDuyenCuongBTH3.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
+                    _context.Update(person);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.EmpId))
+                    if (!PersonExists(person.PersonID))
                     {
                         return NotFound();
                     }
@@ -116,51 +116,51 @@ namespace NguyenDuyenCuongBTH3.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(person);
         }
 
-        // GET: Employee/Delete/5
+        // GET: Person/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.Employee == null)
+            if (id == null || _context.Person == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employee
-                .FirstOrDefaultAsync(m => m.EmpId == id);
-            if (employee == null)
+            var person = await _context.Person
+                .FirstOrDefaultAsync(m => m.PersonID == id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(person);
         }
 
-        // POST: Employee/Delete/5
+        // POST: Person/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.Employee == null)
+            if (_context.Person == null)
             {
-                return Problem("Entity set 'ApplicationContext.Employee'  is null.");
+                return Problem("Entity set 'ApplicationContext.Person'  is null.");
             }
-            var employee = await _context.Employee.FindAsync(id);
-            if (employee != null)
+            var person = await _context.Person.FindAsync(id);
+            if (person != null)
             {
-                _context.Employee.Remove(employee);
+                _context.Person.Remove(person);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmployeeExists(string id)
+        private bool PersonExists(string id)
         {
-          return (_context.Employee?.Any(e => e.EmpId == id)).GetValueOrDefault();
+          return (_context.Person?.Any(e => e.PersonID == id)).GetValueOrDefault();
         }
-          public async Task<IActionResult> Upload()
+         public async Task<IActionResult> Upload()
         {
             return View();
         }
@@ -187,13 +187,13 @@ namespace NguyenDuyenCuongBTH3.Controllers
                         var dt = _excelProcess.ExcelToDataTable(fileLocation);
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            var emp = new Employee();
+                            var per = new Person();
 
-                            emp.EmpId = dt.Rows[i][0].ToString();
-                            emp.EmpName = dt.Rows[i][1].ToString();
-                            emp.Address = dt.Rows[i][2].ToString();
+                            per.PersonID = dt.Rows[i][0].ToString();
+                            per.PersonName = dt.Rows[i][1].ToString();
+                            per.PersonAddress = dt.Rows[i][2].ToString();
 
-                            _context.Employee.Add(emp);
+                            _context.Person.Add(per);
                         }
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(Index));
