@@ -283,3 +283,7 @@ C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\obj\Debug
 C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\obj\Debug\net6.0\NguyenDuyenCuongBTH3.pdb
 C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\obj\Debug\net6.0\NguyenDuyenCuongBTH3.genruntimeconfig.cache
 C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\obj\Debug\net6.0\ref\NguyenDuyenCuongBTH3.dll
+C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\bin\Debug\net6.0\EPPlus.dll
+C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Users\DELL\OneDrive\Documents\NguyenDuyenCuong\NguyenDuyenCuongBTH3\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
