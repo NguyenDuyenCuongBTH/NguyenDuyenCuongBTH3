@@ -17,4 +17,6 @@ using NguyenDuyenCuongBTH3.Models;
         public DbSet<NguyenDuyenCuongBTH3.Models.Student>? Student { get; set; }
 
         public DbSet<NguyenDuyenCuongBTH3.Models.Person>? Person { get; set; }
+
+         public DbSet<NguyenDuyenCuongBTH3.Models.Faculty>? Faculty { get; set; } = default!;
     }
